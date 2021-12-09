@@ -4,47 +4,43 @@ import random
 # Make sure to use `random.randint` to pick your random number.
 while True:
     
-    try:
-        start = int(input('Enter the start of the range: '))
+    start = input('Enter the start of the range: ')
+    if start.isdigit():
+        start = int(start)
         break
-    except ValueError:
+    else:
         print('Please enter a valid number.')
     
 while True:
 
-    try:
-        end = int(input('Enter the end of the range: '))
-        if end >= start:
+    end = input('Enter the end of the range: ')
+    if end.isdigit():
+        if int(end) >= start:
+            end = int(end)
             break
-    except ValueError:
+    else:
         print('Please enter a valid number.')
-        continue
-    # the number was integer but was lower than start
-    print('Please enter a valid number.')
 
-#number_to_guess = random.randint(start,end)
-number_to_guess = 0
+number_to_guess = random.randint(start,end)
 #print(number_to_guess)
-attempts = 0
+attempts = 1
 
 # start guessing
 while True:
 
-    try:
-        attempts += 1
-        guess = int(input('Guess a number: '))
-
-    except ValueError:
-        print('Please enter a valid number.')
-        continue
+    guess = input('Guess a number: ')
     
-    if guess == number_to_guess:
-        print(f'You guessed the number in {attempts} ', end='')
+    if guess.isdigit():
+
+        if guess == number_to_guess:
+            print(f'You guessed the number in {attempts} ', end='')
         if attempts == 1:
             print('attempt')
         else:
             print('attempts')
         break
 
-    #### Do not count the last attempt if it was a guess
+    else:
+        print('Please enter a valid number.')
+    attempts += 1
     
